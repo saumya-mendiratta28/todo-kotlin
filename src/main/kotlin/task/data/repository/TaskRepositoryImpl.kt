@@ -9,7 +9,7 @@ import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.joda.time.DateTime
 
-class ExposedTaskRepository : TaskRepository {
+class TaskRepositoryImpl : TaskRepository {
 
     private fun resultRowToTask(row: ResultRow): Task = Task(
         id = row[TaskTable.id].value,

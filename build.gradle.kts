@@ -35,8 +35,22 @@ dependencies {
     implementation("com.google.dagger:dagger:2.48")
     kapt("com.google.dagger:dagger-compiler:2.48")
 
-    testImplementation(kotlin("test"))
+    // Tests ✅
+    testImplementation("org.jetbrains.kotlin:kotlin-test")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
+    testImplementation("io.ktor:ktor-server-tests:$ktor_version")
+    testImplementation("io.ktor:ktor-server-test-host:$ktor_version")
+    testImplementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
+    testImplementation("io.mockk:mockk:1.13.7")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
 }
+
+tasks {
+    test {
+        useJUnitPlatform()
+    }
+}
+
 
 application {
     mainClass.set("org.example.MainKt")
@@ -44,4 +58,10 @@ application {
 
 kotlin {
     jvmToolchain(11)
+}
+
+tasks {
+    test {
+        useJUnitPlatform()
+    }
 }
