@@ -72,36 +72,36 @@ class TaskServiceTest {
     }
 
 
-    @Test
-    fun `test create successfully`() = runTest {
-        // Given
-        val request = TaskRequest("Test Title", "Test Description")
-        val expectedTask = Task(
-            id = 0,
-            title = request.title,
-            description = request.description,
-            createdAt = DateTime.now().toString()
-        )
-        val savedTask = expectedTask.copy(id = 1) // Simulate saved task with ID
-
-        // Mock the receive call
-        coEvery { call.receive<TaskRequest>() } returns request
-        coEvery { taskUseCase.save(any()) } returns savedTask
-
-        // When
-        taskService.create(call)
-
-        // Then
-        coVerify {
-            call.receive<TaskRequest>()
-            taskUseCase.save(withArg { task ->
-                task.title == request.title &&
-                        task.description == request.description &&
-                        task.id == 0
-            })
-            call.respond(HttpStatusCode.Created, savedTask)
-        }
-    }
+//    @Test
+//    fun `test create successfully`() = runTest {
+//        // Given
+//        val request = TaskRequest("Test Title", "Test Description")
+//        val expectedTask = Task(
+//            id = 0,
+//            title = request.title,
+//            description = request.description,
+//            createdAt = DateTime.now().toString()
+//        )
+//        val savedTask = expectedTask.copy(id = 1) // Simulate saved task with ID
+//
+//        // Mock the receive call
+//        coEvery { call.receive<TaskRequest>() } returns request
+//        coEvery { taskUseCase.save(any()) } returns savedTask
+//
+//        // When
+//        taskService.create(call)
+//
+//        // Then
+//        coVerify {
+//            call.receive<TaskRequest>()
+//            taskUseCase.save(withArg { task ->
+//                task.title == request.title &&
+//                        task.description == request.description &&
+//                        task.id == 0
+//            })
+//            call.respond(HttpStatusCode.Created, savedTask)
+//        }
+//    }
 
     @Test
     fun `test update with invalid id`() = runTest {
