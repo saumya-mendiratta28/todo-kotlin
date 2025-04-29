@@ -35,7 +35,8 @@ dependencies {
     implementation("com.google.dagger:dagger:2.48")
     kapt("com.google.dagger:dagger-compiler:2.48")
 
-    // Tests ✅
+    // Tests
+    testImplementation("com.h2database:h2:2.2.224")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
     testImplementation("io.ktor:ktor-server-tests:$ktor_version")
