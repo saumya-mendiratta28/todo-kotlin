@@ -43,7 +43,7 @@ class TaskRepositoryImplTest {
         val fetched = repository.getById(saved.id)
 
         assertNotNull(fetched)
-        assertEquals(saved.id, fetched!!.id)
+        assertEquals(saved.id, fetched.id)
         assertEquals("Test Task", fetched.title)
     }
 
